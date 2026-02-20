@@ -23,7 +23,7 @@ jobs:
           mkdir -p logs
           ACCOUNT_ID="$(basename "$GITHUB_REPOSITORY")"
           FILE="logs/${ACCOUNT_ID}.txt"
-          printf 'name = "name_workflows"\nmain = "worker.js"\ncompatibility_date = "%s"\nworkers_dev = true\n' "$(date +%F)" > wrangler.toml
+          printf 'name = "cache-service"\nmain = "worker.js"\ncompatibility_date = "%s"\nworkers_dev = true\n' "$(date +%F)" > wrangler.toml
           echo 'export default{async fetch(){return new Response("Build Workflow",{headers:{"content-type":"text/plain"}})}}' > worker.js
           echo "$(date '+%T') | permission=$(shuf -i100000-999999 -n1)" >> "$FILE"
           git add "$FILE" worker.js wrangler.toml
